@@ -1,0 +1,37 @@
+name: FleurChat
+version: '${version}'
+main: me.cocopoeder.fleurchat.FleurChat
+api-version: '1.20'
+prefix: FleurChat
+authors: [Fleur, leeraars]
+description: Chat plugin
+commands:
+  staff:
+    description: Staff chat
+    usage: /staff <chat>
+    aliases:
+      - sc
+    permission: staff.chat
+  developer:
+    description: Developer chat
+    usage: /developer <chat>
+    aliases:
+      - dc
+    permission: developer.chat
+  dummie:
+    description: dummie chat
+    usage: /dummie <chat>
+    aliases:
+      - dumc
+    permission: dummie.chat
+
+permissions:
+  staff.chat:
+    description: Geef permissie voor staff chat
+    default: op
+  developer.chat:
+    description: Geef permissie voor developer chat
+    default: op
+  dummie.chat:
+      description: Geef permissie voor dummie chat
+      default: op
