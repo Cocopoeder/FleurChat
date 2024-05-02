@@ -24,14 +24,24 @@ commands:
     aliases:
       - dumc
     permission: dummie.chat
+  chat:
+    description: toggle
+    usage: /chat <enable of disable>
+    permission: chat.toggle
 
 permissions:
   staff.chat:
     description: Geef permissie voor staff chat
     default: op
+    children:
+      chat.toggle: true
   developer.chat:
     description: Geef permissie voor developer chat
     default: op
+    children:
+      chat.toggle: true
   dummie.chat:
       description: Geef permissie voor dummie chat
       default: op
+      children:
+        chat.toggle: true
