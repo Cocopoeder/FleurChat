@@ -11,24 +11,23 @@ import java.util.Collection;
 
 public class DumCommand implements CommandExecutor {
     private final FleurChat fleurChat;
-    public DumCommand(FleurChat fleurChat){
+
+    public DumCommand(FleurChat fleurChat) {
         this.fleurChat = fleurChat;
     }
+
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] args) {
         Collection<? extends Player> players = commandSender.getServer().getOnlinePlayers();
         for (Player player : players) {
-            if (player.hasPermission("dummie.chat")) {
-
-                if (this.fleurChat.check(player.getUniqueId())) {
-
-                } else
-                {
-
-
-                player.sendMessage(ChatColor.YELLOW +""+ ChatColor.BOLD + "[Dum] " + commandSender.getName() + ChatColor.DARK_GRAY + ": " + ChatColor.WHITE + String.join(" ", args));
-                }
+            if (!player.hasPermission("dummie.chat")) {
+                continue;
             }
+            if (this.fleurChat.check(player.getUniqueId())) {
+                continue;
+            }
+
+            player.sendMessage(ChatColor.YELLOW + "" + ChatColor.BOLD + "[Dum] " + commandSender.getName() + ChatColor.DARK_GRAY + ": " + ChatColor.WHITE + String.join(" ", args));
         }
         return true;
     }

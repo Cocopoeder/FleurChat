@@ -12,7 +12,8 @@ import java.util.Collection;
 public class StaffCommand implements CommandExecutor {
 
     private final FleurChat fleurChat;
-    public StaffCommand(FleurChat fleurChat){
+
+    public StaffCommand(FleurChat fleurChat) {
         this.fleurChat = fleurChat;
     }
 
@@ -20,15 +21,14 @@ public class StaffCommand implements CommandExecutor {
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] args) {
         Collection<? extends Player> players = commandSender.getServer().getOnlinePlayers();
         for (Player player : players) {
-            if (player.hasPermission("staff.chat")) {
-
-                if (this.fleurChat.check(player.getUniqueId())) {
-
-                } else
-                {
-                    player.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "[Staff] " + commandSender.getName() + ChatColor.DARK_GRAY + ": " + ChatColor.WHITE + String.join(" ", args));
-                }
+            if (!player.hasPermission("staff.chat")) {
+                continue;
             }
+            if (this.fleurChat.check(player.getUniqueId())) {
+                continue;
+            }
+
+            player.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "[Staff] " + commandSender.getName() + ChatColor.DARK_GRAY + ": " + ChatColor.WHITE + String.join(" ", args));
         }
         return true;
     }
